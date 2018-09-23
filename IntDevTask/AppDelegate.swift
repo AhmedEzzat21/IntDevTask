@@ -8,7 +8,8 @@
 
 import UIKit
 import CoreData
-
+import Firebase
+import GoogleSignIn
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,8 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        FirebaseApp.configure()
+    
+            // Initialize sign-in
+        GIDSignIn.sharedInstance().clientID = "702260096368-r8fq6uf102972s8cv0qos52qps1is8k3.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance().delegate = self
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url as URL?,
+                                                 sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                                                 annotation: options[UIApplication.OpenURLOptionsKey.annotation])
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -88,6 +99,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
+              withError error: Error!) {
+        if let error = error {
+            print("\(error.localizedDescription)")
+        } else {
+            // Perform any operations on signed in user here.
+            _ = user.userID                  // For client-side use only!
+            _ = user.authentication.idToken // Safe to send to the server
+            _ = user.profile.name
+            _ = user.profile.givenName
+            _ = user.profile.familyName
+            _ = user.profile.email
+            // ...
+        }
+    }
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
+              withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+    }
 
 }
 
+
+extension AppDelegate : GIDSignInDelegate {
+    
+}
