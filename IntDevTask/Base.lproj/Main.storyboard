@@ -31,16 +31,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G08-2Q-Rcz">
-                                <rect key="frame" x="171.97514410552958" y="319.92007685628232" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Map"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G08-2Q-Rcz">
+                                <rect key="frame" x="152" y="320" width="71" height="30"/>
+                                <state key="normal" title="Open Map"/>
                                 <connections>
                                     <action selector="openMap_Btn:" destination="qVQ-5i-Udg" eventType="touchUpInside" id="rhJ-kd-qaS"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="G08-2Q-Rcz" firstAttribute="centerX" secondItem="wO7-pN-uzX" secondAttribute="centerX" id="4Yy-Ig-wI7"/>
+                            <constraint firstItem="G08-2Q-Rcz" firstAttribute="top" secondItem="Pgf-Il-Ki5" secondAttribute="top" constant="300" id="XHB-RY-Qc9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Pgf-Il-Ki5"/>
                     </view>
                 </viewController>
