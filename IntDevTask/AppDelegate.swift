@@ -10,11 +10,14 @@ import UIKit
 import CoreData
 import Firebase
 import GoogleSignIn
+import GoogleMaps
+import CoreLocation
+import GooglePlacePicker
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let id = UserDefaults.standard.string(forKey: "id")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
@@ -22,7 +25,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Initialize sign-in
         GIDSignIn.sharedInstance().clientID = "702260096368-r8fq6uf102972s8cv0qos52qps1is8k3.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
+        GMSServices.provideAPIKey("AIzaSyB1-jkhEPnktJ2uXJL_qHFWwK7tswUq5WQ")
+        GMSPlacesClient.provideAPIKey("AIzaSyB1-jkhEPnktJ2uXJL_qHFWwK7tswUq5WQ")
+        handleLoggedIn()
         return true
+    }
+    
+    func handleLoggedIn() {
+        if id != nil {
+            // go to main screen
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
+            window?.rootViewController = vc
+            window?.makeKeyAndVisible()
+        } else {
+            // go to login screen
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VC")
+            window?.rootViewController = vc
+            window?.makeKeyAndVisible()
+        }
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {

@@ -6,6 +6,9 @@ target 'IntDevTask' do
   use_frameworks!
 pod 'GoogleSignIn'
 pod 'Firebase/Core'
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
+  pod 'GooglePlacePicker'
 
 
 
