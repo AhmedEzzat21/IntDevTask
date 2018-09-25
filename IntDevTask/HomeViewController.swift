@@ -79,6 +79,10 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setLocationManager()
         // Do any additional setup after loading the view.
+        let filter = GMSAutocompleteFilter()
+        filter.type = .establishment
+        filter.country = "EG"
+
     }
     
     
@@ -111,6 +115,7 @@ extension HomeViewController: CLLocationManagerDelegate {
 // Google PlacePicker
 extension HomeViewController: GMSPlacePickerViewControllerDelegate {
     // pick place
+    
     func placePicker(_ viewController: GMSPlacePickerViewController, didPick place: GMSPlace) {
         // Dismiss the place picker, as it cannot dismiss itself.
         print(place.formattedAddress!.components(separatedBy: ", ").joined(separator: ","))

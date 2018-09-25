@@ -39,7 +39,9 @@ class ViewController: UIViewController , GIDSignInUIDelegate, GIDSignInDelegate 
         
         //getting the signin button and adding it to view
         
-        
+        let filter = GMSAutocompleteFilter()
+        filter.type = .establishment
+        filter.country = "EG"
         //        view.addSubview(googleSignInButton)
         // Do any additional setup after loading the view, typically from a nib.
     }
